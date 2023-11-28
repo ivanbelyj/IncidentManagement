@@ -1,0 +1,33 @@
+version: '3.4'
+
+services:
+  processor:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "10000:80"
+    env_file:
+      - env.common
+      - env.processor
+    depends_on:
+      - incidentmanagement_postgresql
+
+  generator:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "10001:80"
+    env_file:
+      - env.common
+      - env.generator
+
+  incidentmanagement_postgresql:
+    environment:
+        - POSTGRES_NAME=postgres
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=Passw0rd
+        #- POSTGRES_DB=postgres
+    ports:
+        - "5432:5432"
+    volumes:      
+        - ~/.docker-conf/postgresql/data/:/var/lib/postgresql/data

@@ -1,0 +1,28 @@
+version: '3.4'
+
+services:
+  processor:
+    image: ${DOCKER_REGISTRY-}eventprocessor
+    build:
+      context: .
+      dockerfile: Systems/EventProcessor/IncidentManagement.EventProcessor/Dockerfile
+    networks:
+      - shared_incidentmanagement_net
+
+  generator:
+    image: ${DOCKER_REGISTRY-}eventgenerator
+    build:
+      context: .
+      dockerfile: Systems/EventGenerator/IncidentManagement.EventGenerator/Dockerfile
+    networks:
+      - shared_incidentmanagement_net
+
+  incidentmanagement_postgresql:
+    image: postgres:14.1
+    networks:
+      - shared_incidentmanagement_net
+
+networks:
+  shared_incidentmanagement_net:
+    name: incidentmanagement
+    driver: bridge

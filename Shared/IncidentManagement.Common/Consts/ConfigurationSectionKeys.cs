@@ -8,4 +8,5 @@ namespace IncidentManagement.Common.Consts;
 public static class ConfigurationSectionKeys
 {
     public const string OPEN_API = "OpenApi";
+    public const string DATABASE = "Database";
 }
