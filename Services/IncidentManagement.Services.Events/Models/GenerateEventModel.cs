@@ -17,6 +17,6 @@ public class GenerateEventModelProfile : Profile
 {
 	public GenerateEventModelProfile()
 	{
-		CreateMap<GenerateEventModel, Event>();
+		CreateMap<GenerateEventModel, EventModel>();
 	}
 }

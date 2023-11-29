@@ -4,5 +4,15 @@
         <name>IncidentManagement.EventProcessor</name>
     </assembly>
     <members>
+        <member name="M:IncidentManagement.EventProcessor.Controllers.Incidents.EventProcessingController.ProcessEvent(IncidentManagement.EventProcessor.Controllers.Incidents.Models.ProcessEventRequest)">
+            <summary>
+            Processes created event
+            </summary>
+        </member>
+        <member name="M:IncidentManagement.EventProcessor.Controllers.Incidents.EventProcessingController.GetIncidents(System.Int32,System.Int32,System.Boolean,System.Boolean)">
+            <summary>
+            Incidents created based on processed events
+            </summary>
+        </member>
     </members>
 </doc>

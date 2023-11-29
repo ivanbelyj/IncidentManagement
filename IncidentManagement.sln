@@ -33,6 +33,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IncidentManagement.EventPro
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IncidentManagement.EventGenerator", "Systems\EventGenerator\IncidentManagement.EventGenerator\IncidentManagement.EventGenerator.csproj", "{AF7C3823-3A2D-4A6D-A94D-2068F3B212DF}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IncidentManagement.Services.EventProcessing", "Services\IncidentManagement.Services.EventProcessing\IncidentManagement.Services.EventProcessing.csproj", "{D4FEDE3E-1F95-4654-89D8-E99EDF21D02A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +73,10 @@ Global
 		{AF7C3823-3A2D-4A6D-A94D-2068F3B212DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AF7C3823-3A2D-4A6D-A94D-2068F3B212DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AF7C3823-3A2D-4A6D-A94D-2068F3B212DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4FEDE3E-1F95-4654-89D8-E99EDF21D02A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4FEDE3E-1F95-4654-89D8-E99EDF21D02A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4FEDE3E-1F95-4654-89D8-E99EDF21D02A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4FEDE3E-1F95-4654-89D8-E99EDF21D02A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -86,6 +92,7 @@ Global
 		{A397DA6A-9270-49B4-B616-EFC9E58B00DD} = {3C14D6D7-2484-4EC2-B648-BBF669E7BC6F}
 		{13EDEC62-981E-423F-A75C-37377752C892} = {CDD81995-ED86-4E36-9AA6-6662F05C0381}
 		{AF7C3823-3A2D-4A6D-A94D-2068F3B212DF} = {307AFF2F-0156-4D10-A575-D789B875D4E2}
+		{D4FEDE3E-1F95-4654-89D8-E99EDF21D02A} = {EEA02D60-B5BD-4271-AD83-0727387E0BD7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3A483BA1-AE2C-443B-93E3-297122144191}

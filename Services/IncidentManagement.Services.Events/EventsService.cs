@@ -19,13 +19,20 @@ public class EventsService : IEventsService
         this.mapper = mapper;
         this.logger = logger;
     }
-    public async Task<EventModel> GenerateEvent(GenerateEventModel model)
+    public Task<EventModel> GenerateAndSendEvent(GenerateEventModel model)
     {
-        var generatedEvent = mapper.Map<Event>(model);
+        // No need to map it to Event because we don't add the event
+        // to the database in this service
+        //var generatedEvent = mapper.Map<Event>(model);
+        var generatedEvent = mapper.Map<EventModel>(model);
+        generatedEvent.Time = DateTime.UtcNow;
+
+        // Now the generated event has no Id
 
         // Todo: send
-        logger.Information($"Event of (type: {generatedEvent.Type}) is generated");
+        logger.Information($"Event generated (type: {generatedEvent.Type},"
+            + $" time: {generatedEvent.Time})");
 
-        return mapper.Map<EventModel>(generatedEvent);
+        return Task.FromResult(generatedEvent);
     }
 }

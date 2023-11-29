@@ -6,7 +6,7 @@ namespace EventGenerator.Controllers.Events.Models;
 
 public class EventResponse
 {
-    public Guid Id { get; set; }
+    //public Guid Id { get; set; }
     public EventType Type { get; set; }
     public DateTime Time { get; set; }
 }

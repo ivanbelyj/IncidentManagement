@@ -30,7 +30,7 @@ public class EventsController : ControllerBase
         [FromBody] GenerateEventRequest request)
     {
         var eventModel = await eventsService
-            .GenerateEvent(mapper.Map<GenerateEventModel>(request));
+            .GenerateAndSendEvent(mapper.Map<GenerateEventModel>(request));
         return mapper.Map<EventResponse>(eventModel);
     }
 }

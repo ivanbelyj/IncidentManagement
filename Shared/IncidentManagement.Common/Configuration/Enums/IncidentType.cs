@@ -7,6 +7,6 @@ using System.Threading.Tasks;
 namespace IncidentManagement.Common.Enums;
 public enum IncidentType
 {
-    Type1,
-    Type2
+    Type1 = 1,
+    Type2 = 2
 }

@@ -26,6 +26,7 @@ services.AddAppDbContext(builder.Configuration);
 
 services.AddAppVersioning();
 services.AddAppOpenApi(openApiSettings, appTitle);
+services.AddAppAutoMapper();
 services.AddAppControllers();
 
 services.AddAppServices(builder.Configuration);

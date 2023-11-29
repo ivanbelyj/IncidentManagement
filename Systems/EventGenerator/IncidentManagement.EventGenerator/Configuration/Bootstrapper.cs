@@ -1,5 +1,6 @@
 ﻿using IncidentManagement.Common.Configuration;
 using IncidentManagement.Common.Configuration.Settings;
+using IncidentManagement.EventGenerator;
 using IncidentManagement.Services.Events;
 
 namespace EventGenerator.Configuration;
@@ -13,6 +14,8 @@ public static class Bootstrapper
         services.AddAppOpenApiSettings(configuration);
 
         services.AddEventsService();
+        services.AddHostedService<GeneratorBackgroundService>();
+
         return services;
     }
 }
