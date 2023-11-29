@@ -12,6 +12,7 @@ public static class Bootstrapper
         IConfiguration? configuration = null)
     {
         services.AddAppOpenApiSettings(configuration);
+        services.AddGeneratorSettings(configuration);
 
         services.AddEventsService();
         services.AddHostedService<GeneratorBackgroundService>();

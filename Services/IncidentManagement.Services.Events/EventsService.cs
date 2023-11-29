@@ -1,6 +1,7 @@
 using AutoMapper;
 using IncidentManagement.Context.Entities;
 using IncidentManagement.Services.Events.Models;
+using IncidentManagement.Services.Events.Sending;
 using Serilog;
 using System;
 using System.Collections.Generic;
@@ -13,11 +14,13 @@ public class EventsService : IEventsService
 {
     private readonly IMapper mapper;
     private readonly ILogger logger;
+    private readonly IEventSender eventSender;
 
-    public EventsService(IMapper mapper, ILogger logger)
+    public EventsService(IMapper mapper, ILogger logger, IEventSender eventSender)
     {
         this.mapper = mapper;
         this.logger = logger;
+        this.eventSender = eventSender;
     }
     public Task<EventModel> GenerateAndSendEvent(GenerateEventModel model)
     {
@@ -29,9 +32,17 @@ public class EventsService : IEventsService
 
         // Now the generated event has no Id
 
-        // Todo: send
         logger.Information($"Event generated (type: {generatedEvent.Type},"
             + $" time: {generatedEvent.Time})");
+
+        try
+        {
+            eventSender.Send(generatedEvent);
+        } catch (Exception ex)
+        {
+            logger.Error(ex, "An error occurred while sending the generated event.");
+        }
+        
 
         return Task.FromResult(generatedEvent);
     }

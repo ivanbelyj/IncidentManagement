@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Data\IncidentManagement.Context.Entities\IncidentManagement.Context.Entities.csproj" />
+    <ProjectReference Include="..\..\Shared\IncidentManagement.Common\IncidentManagement.Common.csproj" />
   </ItemGroup>
 
 </Project>

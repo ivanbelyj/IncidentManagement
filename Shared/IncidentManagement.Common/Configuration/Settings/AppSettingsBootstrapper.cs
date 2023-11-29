@@ -22,4 +22,17 @@ public static class AppSettingsBootstrapper
 
         return services;
     }
+
+    public static IServiceCollection AddGeneratorSettings(
+        this IServiceCollection services,
+        IConfiguration? configuration = null)
+    {
+        var generatorSettings = ConfigurationUtils.Load<GeneratorSettings>
+            (ConfigurationSectionKeys.GENERATOR, configuration);
+        ArgumentNullException.ThrowIfNull(generatorSettings);
+
+        services.AddSingleton(generatorSettings);
+
+        return services;
+    }
 }
