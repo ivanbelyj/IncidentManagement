@@ -14,6 +14,5 @@ namespace IncidentManagement.Services.EventProcessing.TemplateMatching;
 /// </summary>
 public interface ITemplateHandler
 {
-    (bool isMatched, AddIncidentModel? incident) HandleEvent(
-        ProcessEventModel eventModel);
+    TemplateMatchingResult HandleEvent(ProcessEventModel eventModel);
 }

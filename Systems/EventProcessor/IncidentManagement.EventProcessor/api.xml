@@ -6,12 +6,14 @@
     <members>
         <member name="M:IncidentManagement.EventProcessor.Controllers.Incidents.EventProcessingController.ProcessEvent(IncidentManagement.EventProcessor.Controllers.Incidents.Models.ProcessEventRequest)">
             <summary>
-            Processes created event
+            Processes the created event (please, set the correct time of event creation 
+            if you will call it in OpenApi UI or use EventsGenerator where it will
+            be set automatically)
             </summary>
         </member>
         <member name="M:IncidentManagement.EventProcessor.Controllers.Incidents.EventProcessingController.GetIncidents(System.Int32,System.Int32,System.Boolean,System.Boolean)">
             <summary>
-            Incidents created based on processed events
+            Incidents created based on the processed events
             </summary>
         </member>
     </members>

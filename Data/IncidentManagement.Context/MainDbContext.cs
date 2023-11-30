@@ -9,8 +9,8 @@ using System.Threading.Tasks;
 namespace IncidentManagement.Context;
 public class MainDbContext : DbContext
 {
-    //public DbSet<Event> Events { get; set; }
     public DbSet<Incident> Incidents { get; set; }
+    public DbSet<Event> Events { get; set; }
 
     public MainDbContext(DbContextOptions<MainDbContext> options) : base(options)
     {
@@ -21,13 +21,18 @@ public class MainDbContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
 
-        //modelBuilder.Entity<Event>(entity =>
-        //{
-        //    entity.ToTable("event");
-        //});
         modelBuilder.Entity<Incident>(entity =>
         {
             entity.ToTable("incidents");
+        });
+        modelBuilder.Entity<Event>(entity =>
+        {
+            entity.ToTable("events");
+            entity
+                .HasOne(x => x.DerivedIncident)
+                .WithMany(x => x.BaseEvents)
+                .HasForeignKey(x => x.DerivedIncidentId)
+                .IsRequired(false);
         });
     }
 }

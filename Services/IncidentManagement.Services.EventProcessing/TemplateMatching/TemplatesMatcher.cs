@@ -19,18 +19,19 @@ public class TemplatesMatcher
         this.templateHandlers = templateHandlers;
     }
 
-    public AddIncidentModel? MatchAndCreateIncident(ProcessEventModel eventModel)
+    public TemplateMatchingResult MatchAndCreateIncident(
+        ProcessEventModel eventModel)
     {
         foreach (var handler in templateHandlers)
         {
-            var (isMatched, incident) = handler.HandleEvent(eventModel);
-            if (isMatched)
+            var handlingRes = handler.HandleEvent(eventModel);
+            if (handlingRes.IsMatched)
             {
                 // Return an incident of the first matching template
-                return incident;
+                return handlingRes;
             }
         }
 
-        return null;
+        return TemplateMatchingResult.NotMatched;
     }
 }

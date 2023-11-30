@@ -23,10 +23,10 @@ public class SimpleTemplateHandler : ITemplateHandler
         };
     }
 
-    public (bool isMatched, AddIncidentModel? incident) HandleEvent(
-        ProcessEventModel eventModel)
+    public TemplateMatchingResult HandleEvent(ProcessEventModel eventModel)
     {
         bool isMatched = MatchEvent(eventModel);
-        return (isMatched, isMatched ? CreateIncident() : null);
+        return isMatched ? TemplateMatchingResult.Succeed(CreateIncident(),
+            new[] { eventModel }) : TemplateMatchingResult.NotMatched;
     }
 }

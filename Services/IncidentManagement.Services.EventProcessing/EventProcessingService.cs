@@ -37,7 +37,11 @@ public class EventProcessingService : IEventProcessingService
         bool sorted = true,
         bool orderByTimeDesc = true)
     {
-        var incidents = dbContext.Incidents.AsQueryable();
+        var incidents = dbContext
+            .Incidents
+            .Include(x => x.BaseEvents)
+            .AsQueryable();
+
         if (sorted)
         {
             incidents = orderByTimeDesc
@@ -52,18 +56,40 @@ public class EventProcessingService : IEventProcessingService
 
     public async Task ProcessEvent(ProcessEventModel model)
     {
-        AddIncidentModel? addIncidentModel = matcher.MatchAndCreateIncident(model);
+        var matchingRes = matcher.MatchAndCreateIncident(model);
 
-        if (addIncidentModel != null)
-            await AddIncident(addIncidentModel);
+        if (matchingRes.IsMatched)
+        {
+            var incident = await AddIncident(matchingRes.AddIncidentModel!);
+            await AddBaseEvents(incident.Id, matchingRes.BaseProcessEventModels!);
+        }
     }
 
-    private async Task AddIncident(AddIncidentModel incidentModel)
+    private async Task<Incident> AddIncident(AddIncidentModel addIncidentModel)
     {
-        var incident = mapper.Map<Incident>(incidentModel);
+        var incident = mapper.Map<Incident>(addIncidentModel);
         await dbContext.Incidents.AddAsync(incident);
-        logger.Information($"Created incident (type: {incident.Type}, "
+        logger.Information($"Added incident (type: {incident.Type}, "
             + $"time: {incident.Time})");
+
+        dbContext.SaveChanges();
+
+        return incident;
+    }
+
+    // For adding base events of the incident
+    private async Task AddBaseEvents(Guid incidentId, ProcessEventModel[] models)
+    {
+        foreach (var model in models)
+        {
+            var newEvent = mapper.Map<Event>(model);
+            newEvent.DerivedIncidentId = incidentId;
+
+            await dbContext.Events.AddAsync(newEvent);
+            
+        }
+        logger.Information($"{models.Length} base event" +
+            (models.Length != 1 ? "s" : "") + " added");
 
         dbContext.SaveChanges();
     }

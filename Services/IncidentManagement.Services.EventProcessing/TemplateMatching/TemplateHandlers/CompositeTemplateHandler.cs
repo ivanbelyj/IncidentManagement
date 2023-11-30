@@ -17,30 +17,32 @@ public class CompositeTemplateHandler : ITemplateHandler
         if (eventModel.Type == EventType.Type2)
             lastProcessedType2Event = eventModel;
 
-        if (eventModel.Type == EventType.Type1
+        return (eventModel.Type == EventType.Type1
             && lastProcessedType2Event != null
             && (eventModel.Time - lastProcessedType2Event.Time)
-                .TotalSeconds <= 20)
-        {
-            // One Type2 event - one Type2 incident
-            lastProcessedType2Event = null;
-            return true;
-        }
-        return false;
+                .TotalSeconds <= 20);
     }
 
-    public AddIncidentModel CreateIncident(ProcessEventModel eventModel)
-    {
-        return new AddIncidentModel()
-        {
-            Type = IncidentType.Type2
-        };
-    }
-
-    public (bool isMatched, AddIncidentModel? incident) HandleEvent(
-        ProcessEventModel eventModel)
+    public TemplateMatchingResult HandleEvent(ProcessEventModel eventModel)
     {
         bool isMatched = ProcessAndMatchEvent(eventModel);
-        return (isMatched, isMatched ? CreateIncident(eventModel) : null);
+        if (isMatched)
+        {
+            var addIncidentModel = new AddIncidentModel()
+            {
+                Type = IncidentType.Type2
+            };
+            var res = TemplateMatchingResult.Succeed(addIncidentModel, new[]
+            {
+                eventModel, lastProcessedType2Event!
+            });
+
+            // One Type2 event - one Type2 incident
+            lastProcessedType2Event = null;
+
+            return res;
+        }
+        else
+            return TemplateMatchingResult.NotMatched;
     }
 }

@@ -10,4 +10,5 @@ public class Incident : EntityBase
 {
     public IncidentType Type { get; set; }
     public DateTime Time { get; set; } = DateTime.UtcNow;
+    public virtual ICollection<Event>? BaseEvents { get; set; }
 }

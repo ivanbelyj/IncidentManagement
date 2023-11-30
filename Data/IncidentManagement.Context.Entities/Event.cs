@@ -10,4 +10,6 @@ public class Event : EntityBase
 {
     public EventType Type { get; set; }
     public DateTime Time { get; set; } = DateTime.UtcNow;
+    public Guid? DerivedIncidentId { get; set; }
+    public virtual Incident? DerivedIncident { get; set; }
 }

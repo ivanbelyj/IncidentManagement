@@ -13,6 +13,7 @@ public class IncidentModel
     public Guid Id { get; set; }
     public IncidentType Type { get; set; }
     public DateTime Time { get; set; }
+    public ICollection<EventModel>? BaseEvents { get; set; }
 }
 
 public class IncidentModelProfile : Profile
