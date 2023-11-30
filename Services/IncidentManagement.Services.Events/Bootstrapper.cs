@@ -14,6 +14,8 @@ public static class Bootstrapper
     {
         services.AddHttpClient();
         services.AddSingleton<IEventSender, HttpSender>();
+        // With this approach, sending using message-broker can also be supported
+
         services.AddSingleton<IEventsService, EventsService>();
         return services;
     }

@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "IncidentManagement.Context": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:57168;http://localhost:57169"
+    }
+  }
+}

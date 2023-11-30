@@ -61,6 +61,8 @@ public class EventProcessingService : IEventProcessingService
         if (matchingRes.IsMatched)
         {
             var incident = await AddIncident(matchingRes.AddIncidentModel!);
+
+            // Only events related to the created incident are added to the database
             await AddBaseEvents(incident.Id, matchingRes.BaseProcessEventModels!);
         }
     }
