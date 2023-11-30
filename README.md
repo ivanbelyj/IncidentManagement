@@ -1,5 +1,5 @@
 # IncidentManagement
-Test task for the Junior .NET Developer position. This project includes EventGenerator background service, EventProcessor (both with REST api supporting Swagger), docker orchestration (docker-compose), EF Core Code First, settings (with appsettings.json for running services without docker or docker env files used by containers), services health checks, and some other features.
+Test task for the Junior .NET Developer position. This project includes EventGenerator background service, EventProcessor (both with REST api supporting Swagger), docker orchestration (docker-compose), EF Core Code First, settings (with appsettings.json for running services without docker and with env files used by containers), services health checks, and some other features.
 
 # Build and setup
 To build the project, use docker-compose
