@@ -50,25 +50,25 @@ public static class OpenApiConfiguration
             var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
             options.IncludeXmlComments(xmlPath);
 
-            options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
-            {
-                Name = "Bearer",
-                Type = SecuritySchemeType.OAuth2,
-                Scheme = "oauth2",
-                BearerFormat = "JWT",
-                In = ParameterLocation.Header,
-                Flows = new OpenApiOAuthFlows
-                {
-                    // There can be configured authorization
-                    //Password = new OpenApiOAuthFlow
-                    //{
-                    //    TokenUrl = new Uri($"{identitySettings.Url}/connect/token"),
-                    //    Scopes = new Dictionary<string, string>
-                    //    {
-                    //    }
-                    //}
-                }
-            });
+            //options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
+            //{
+            //    Name = "Bearer",
+            //    Type = SecuritySchemeType.OAuth2,
+            //    Scheme = "oauth2",
+            //    BearerFormat = "JWT",
+            //    In = ParameterLocation.Header,
+            //    Flows = new OpenApiOAuthFlows
+            //    {
+            //        // There can be configured authorization
+            //        //Password = new OpenApiOAuthFlow
+            //        //{
+            //        //    TokenUrl = new Uri($"{identitySettings.Url}/connect/token"),
+            //        //    Scopes = new Dictionary<string, string>
+            //        //    {
+            //        //    }
+            //        //}
+            //    }
+            //});
 
             //options.AddSecurityRequirement(new OpenApiSecurityRequirement
             //    {
