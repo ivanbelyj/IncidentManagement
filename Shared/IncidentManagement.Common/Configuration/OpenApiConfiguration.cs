@@ -126,7 +126,7 @@ public static class OpenApiConfiguration
 
                 options.DocExpansion(DocExpansion.List);
                 options.DefaultModelsExpandDepth(-1);
-                options.OAuthAppName(appTitle);
+                //options.OAuthAppName(appTitle);
 
                 //options.OAuthClientId(openApiSettings?.OAuthClientId ?? "");
                 //options.OAuthClientSecret(openApiSettings?.OAuthClientSecret ?? "");
